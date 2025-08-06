@@ -27,7 +27,7 @@ jobs:
       # Step 2: Node.jsの環境をセットアップ
       - uses: actions/setup-node@v4
         with:
-          node-version: lts/*
+          node-version: 20
 
       # Step 3: package.jsonに定義された依存関係をインストール
       - name: Install dependencies
