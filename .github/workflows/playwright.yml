@@ -61,3 +61,4 @@ jobs:
         run: npx wrangler pages deploy dist --project-name=2025-e2e-test-1
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
