@@ -10,8 +10,7 @@
     "test:debug": "node_modules/.bin/playwright test --debug",
     "serve": "npx http-server public -p 3000",
     "install-playwright": "npx playwright install",
-    "build-for-cf": "npx playwright install && npx playwright test && mkdir -p dist && cp -r public/* dist/ && cp -r playwright-report dist/report",
-    "deploy-to-cf": "mkdir -p dist && cp -r public/* dist/ && cp -r playwright-report dist/report"
+    "build-for-pages": "mkdir -p dist && cp -r public/* dist/ && cp -r playwright-report dist/playwright-report"
   },
   "keywords": [
     "playwright",
