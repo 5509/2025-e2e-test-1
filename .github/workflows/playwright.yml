@@ -12,6 +12,11 @@ on:
   pull_request:
     branches: [main]
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 jobs:
   # テスト実行ジョブの定義
   test:
@@ -47,18 +52,20 @@ jobs:
       - name: Run Build for Cloudflare
         run : npm run deploy-to-cf
 
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+        if: ${{ !cancelled() }}
+
       # Step 7: distディレクトリをアーティファクトとして保存
       # テストが成功・失敗に関わらず（if: always()）レポートを保存
-      #- uses: actions/upload-artifact@v4
-      #  if: always()  # テスト結果に関係なく常に実行
-      #  with:
-      #    name: dist           # アーティファクトの名前
-      #    path: dist/          # レポートファイルのパス
-      #    retention-days: 30   # レポートの保存期間（30日間）
+      - uses: actions/upload-artifact@v4
+        if: always()  # テスト結果に関係なく常に実行
+        with:
+          name: dist           # アーティファクトの名前
+          path: dist/          # レポートファイルのパス
+          retention-days: 30   # レポートの保存期間（30日間）
 
-      # Step 8: Cloudflare Workersにデプロイ
-      - name: Deploy to Cloudflare Pages
-        run: npx wrangler pages deploy dist --project-name=2025-e2e-test-1-private
-        env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+        if: ${{ !cancelled() }}
