@@ -1,6 +1,0 @@
-name = "2025-e2e-test-1-private"
-main = "worker/index.js"
-compatibility_date = "2025-08-01"
-
-[site]
-bucket = "./dist"
