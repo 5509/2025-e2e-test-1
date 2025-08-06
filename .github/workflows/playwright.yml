@@ -31,7 +31,7 @@ jobs:
 
       # Step 3: package.jsonに定義された依存関係をインストール
       - name: Install dependencies
-        run: npm ci
+        run: npm install
 
       # Step 4: Playwrightブラウザと必要な依存関係をインストール
       # --with-depsオプションでシステムレベルの依存関係も同時にインストール
@@ -62,6 +62,6 @@ jobs:
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
           accountId: ${{ secrets.CF_ACCOUNT_ID }}
-          command: publish
+          command: deploy
         env:
           LOG_LEVEL: debug
