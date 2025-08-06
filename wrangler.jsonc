@@ -1,8 +1,0 @@
-{
-  "name": "2025-e2e-test-1-private",
-  "compatibility_date": "2025-08-01",
-  "main": "worker/index.js",
-  "assets": {
-    "directory": "./dist/*"
-  }
-}
