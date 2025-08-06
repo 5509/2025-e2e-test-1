@@ -27,11 +27,11 @@ jobs:
       # Step 2: Node.jsの環境をセットアップ
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: lts/*
 
       # Step 3: package.jsonに定義された依存関係をインストール
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
       # Step 4: Playwrightブラウザと必要な依存関係をインストール
       # --with-depsオプションでシステムレベルの依存関係も同時にインストール
