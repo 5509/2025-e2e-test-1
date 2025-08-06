@@ -62,6 +62,3 @@ jobs:
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
           accountId: ${{ secrets.CF_ACCOUNT_ID }}
-          projectName: 2025-e2e-test-1
-          directory: dist
-          branch: main
