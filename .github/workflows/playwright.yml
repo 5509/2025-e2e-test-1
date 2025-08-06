@@ -41,7 +41,7 @@ jobs:
       # Step 5: 実際のPlaywrightテストを実行
       # package.jsonのtestスクリプト（playwright test）を実行
       - name: Run Playwright tests
-        run: npm run test
+        run: npx playwright test
 
       # Step 6: publicディレクトリとテスト結果を統合
       - name: Run Build for Cloudflare
@@ -49,19 +49,16 @@ jobs:
 
       # Step 7: distディレクトリをアーティファクトとして保存
       # テストが成功・失敗に関わらず（if: always()）レポートを保存
-      - uses: actions/upload-artifact@v4
-        if: always()  # テスト結果に関係なく常に実行
-        with:
-          name: dist           # アーティファクトの名前
-          path: dist/          # レポートファイルのパス
-          retention-days: 30   # レポートの保存期間（30日間）
+      #- uses: actions/upload-artifact@v4
+      #  if: always()  # テスト結果に関係なく常に実行
+      #  with:
+      #    name: dist           # アーティファクトの名前
+      #    path: dist/          # レポートファイルのパス
+      #    retention-days: 30   # レポートの保存期間（30日間）
 
       # Step 8: Cloudflare Workersにデプロイ
-      - name: Publish to Cloudflare Workers
+      - name: Deploy to Cloudflare Workers
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
           accountId: ${{ secrets.CF_ACCOUNT_ID }}
-          command: deploy
-        env:
-          LOG_LEVEL: debug
