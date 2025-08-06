@@ -45,7 +45,7 @@ jobs:
 
       # Step 6: publicディレクトリとテスト結果を統合
       - name: Run Build for Cloudflare
-        run : npm run build-for-cf
+        run : npm run deploy-to-cf
 
       # Step 7: distディレクトリをアーティファクトとして保存
       # テストが成功・失敗に関わらず（if: always()）レポートを保存
